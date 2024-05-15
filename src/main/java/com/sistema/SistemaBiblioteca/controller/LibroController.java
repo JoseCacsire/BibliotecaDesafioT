@@ -3,6 +3,7 @@ package com.sistema.SistemaBiblioteca.controller;
 import com.sistema.SistemaBiblioteca.dto.request.LibroRequestDto;
 import com.sistema.SistemaBiblioteca.dto.response.AgregarLibroResponseDto;
 import com.sistema.SistemaBiblioteca.dto.response.BuscarLibrosResponseDto;
+import com.sistema.SistemaBiblioteca.model.Libro;
 import com.sistema.SistemaBiblioteca.service.LibroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,10 +14,17 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/libros")
+@RequestMapping("/api/libro")
 public class LibroController {
 
     private final LibroService libroService;
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<Libro>> listarLibros(){
+
+        return ResponseEntity.ok(libroService.findAll());
+
+    }
 
     @GetMapping("/buscar")
     public ResponseEntity<?> buscarLibro(@RequestParam(required = false) String titulo,
@@ -46,7 +54,10 @@ public class LibroController {
     @PostMapping("/agregar")
     public ResponseEntity<AgregarLibroResponseDto> agregarLibro(@RequestBody LibroRequestDto requestDto) {
         AgregarLibroResponseDto responseDto = libroService.agregarLibro(requestDto);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+//        primera forma
+//        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+//        segunda forma
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
 }

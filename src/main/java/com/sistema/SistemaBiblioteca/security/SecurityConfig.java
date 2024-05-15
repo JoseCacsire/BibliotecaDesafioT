@@ -30,8 +30,10 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http->{
                     http.requestMatchers("/h2-ui/**").permitAll();
-                    http.requestMatchers(HttpMethod.GET,"/api/libros/**").hasRole("USER");
-                    http.requestMatchers(HttpMethod.POST,"/api/libros/**","/api/prestamo").hasRole("USER");
+//              Para q no me pida autenticacion y puedas probar la aplicacion en la documentacion generada por swagger
+                    http.requestMatchers("/v3/api-docs/**","/swagger-ui/**","/swagger-ui.html").permitAll();
+                    http.requestMatchers(HttpMethod.GET,"/api/libro/**").hasRole("USER");
+                    http.requestMatchers(HttpMethod.POST,"/api/libro/**","/api/prestamo").hasRole("USER");
                     http.anyRequest().denyAll();
                 })
                 .headers(headers-> headers.frameOptions().disable())

@@ -22,6 +22,7 @@ public class Prestamo {
     private Date fechaPrestamo;
     private Date fechaDevolucionPrevista;
 
+//    Esta relación es útil si tu sistema generalmente presta un solo libro a la vez por cada préstamo.
     @ManyToOne
     @JoinColumn(name = "libro_id")
     private Libro libro;

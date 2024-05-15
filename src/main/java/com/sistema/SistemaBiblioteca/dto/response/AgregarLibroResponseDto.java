@@ -18,13 +18,13 @@ public class AgregarLibroResponseDto {
     private String genero;
     private int anoPublicacion;
 
-
-    public AgregarLibroResponseDto(Libro libroGuardado) {
-        this.id = libroGuardado.getId();
-        this.titulo = libroGuardado.getTitulo();
-        this.autor = libroGuardado.getAutor();
-        this.genero = libroGuardado.getGenero();
-        this.anoPublicacion = libroGuardado.getAnoPublicacion();
-
-    }
+//    Si usas la libreria mapstruc o mapper no uses esto
+//    public AgregarLibroResponseDto(Libro libroGuardado) {
+//        this.id = libroGuardado.getId();
+//        this.titulo = libroGuardado.getTitulo();
+//        this.autor = libroGuardado.getAutor();
+//        this.genero = libroGuardado.getGenero();
+//        this.anoPublicacion = libroGuardado.getAnoPublicacion();
+//
+//    }
 }
